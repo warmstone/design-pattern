@@ -1,16 +1,12 @@
 package com.warmstone.design.pattern.decorator;
 
-/**
- * 装饰器类_实现类 Concrete Decorator
- * 在被装饰类的四周增加显示
- * +----+
- * |    |
- * +----+
- */
-public class FullDecorator extends Decorator{
+public class UpDownBorder extends Border{
 
-    public FullDecorator(Display display) {
+    private char ch;
+
+    public UpDownBorder(Display display, char ch) {
         super(display);
+        this.ch = ch;
     }
 
     @Override
@@ -20,21 +16,21 @@ public class FullDecorator extends Decorator{
 
     @Override
     public int getColumns() {
-        return 1 + display.getColumns() + 1;
+        return display.getColumns();
     }
 
     @Override
     public String getRowText(int i) {
         if (i == 0) {
-            return "+" + makeLine('-', display.getColumns()) + "+";
+            return makeLine(ch, display.getColumns());
         }
         if (i == display.getRows() + 1) {
-            return "+" + makeLine('-', display.getColumns()) + "+";
+            return makeLine(ch, display.getColumns());
         }
-        return "|" + display.getRowText(i - 1) + "|";
+        return display.getRowText(i - 1);
     }
 
-    private String makeLine(char ch, int count) {
+    public String makeLine(char ch, int count) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < count; i++) {
             sb.append(ch);

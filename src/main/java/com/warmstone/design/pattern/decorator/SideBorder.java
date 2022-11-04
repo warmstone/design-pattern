@@ -4,11 +4,11 @@ package com.warmstone.design.pattern.decorator;
  * 装饰器_具体实现类 Concrete Decorator
  * 在每一行的两边增加一个 ch
  */
-public class SideDecorator extends Decorator{
+public class SideBorder extends Border {
 
     private char ch;
 
-    public SideDecorator(Display display, char ch) {
+    public SideBorder(Display display, char ch) {
         super(display);
         this.ch = ch;
     }
